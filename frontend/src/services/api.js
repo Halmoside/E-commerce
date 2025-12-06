@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000" ; 
+const API_BASE = import.meta.env.VITE_API_BASE_URL ; 
 
 export async function fetchProducts() {
   const res = await fetch(`${API_BASE}/api/products`);
@@ -36,4 +36,5 @@ export async function getCurrentUser(token) {
   });
   return res.json();
 }
+
 
