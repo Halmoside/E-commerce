@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: "*"
+  origin: 'https://poetic-bienenstitch-76667f.netlify.app'
   ));
 app.use(express.json());
 
@@ -29,4 +29,5 @@ start().catch(err => {
   console.error(err);
   process.exit(1);
 });
+
 
