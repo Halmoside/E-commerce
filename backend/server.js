@@ -10,7 +10,8 @@ dotenv.config();
 const app = express();
 
 const allowedOrigins = [
-  'https://poetic-bienenstitch-76667f.netlify.app'
+  'https://poetic-bienenstitch-76667f.netlify.app',
+  "http://localhost:5000"
 ];
 
 app.use(cors({
@@ -43,3 +44,4 @@ start().catch(err => {
   console.error(err);
   process.exit(1);
 });
+
