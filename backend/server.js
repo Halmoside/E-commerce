@@ -8,15 +8,29 @@ import usersRouter from "./routes/user.route.js";
 dotenv.config();
 
 const app = express();
+
+const allowedOrigins = [
+  'https://poetic-bienenstitch-76667f.netlify.app'
+];
+
 app.use(cors({
-  origin: 'https://poetic-bienenstitch-76667f.netlify.app'
-  ));
+  origin: function(origin, callback) {
+    
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
 async function start() {
   await connectDB(process.env.MONGO_URI);
+
   app.use("/api/products", productsRouter);
   app.use("/api/users", usersRouter);
 
@@ -29,5 +43,3 @@ start().catch(err => {
   console.error(err);
   process.exit(1);
 });
-
-
